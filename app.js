@@ -13,7 +13,6 @@ app.put('/update-data', function (req, res) {
     res.send('PUT Request');
 });
 
-
 app.delete('/delete-data', function (req, res) {
     res.send('DELETE Request');
 });
