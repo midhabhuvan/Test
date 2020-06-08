@@ -5,7 +5,11 @@ pipeline {
       registryCredential = 'docker-hub-credentials'
       dockerImage = ''
     }
-
+   def version 
+   def versions 
+   def major
+   def minor
+   def patch
    stages {
       stage('Download Git Code') {
          steps {
@@ -18,7 +22,7 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Starting to build docker image'
-                dockerImage = docker.build(registry + ":$BUILD_NUMBER")
+                dockerImage = docker.build(registry + ":latest")
                  }    
             }
         }
@@ -28,8 +32,17 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Publishing Image To DockerHUb'
+                version = readFile('VERSION')
+                versions = version.split('\\.')
+                major = versions[0]
+                minor = versions[0] + '.' + versions[1]
+                patch = version.trim()
                 docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                   dockerImage.push()
+                   dockerImage.push(major)
+                   dockerImage.push(minor)
+                   dockerImage.push(patch)
+                   
                  } 
   
             }    
