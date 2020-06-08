@@ -18,7 +18,7 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Starting to build docker image'
-                dockerImage = sudo docker.build("learningimage")
+                dockerImage = docker.build("learningimage")
             }
             
             
