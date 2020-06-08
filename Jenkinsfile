@@ -18,7 +18,7 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Starting to build docker image'
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                dockerImage = sudo docker.build registry + ":$BUILD_NUMBER"
             }
             
             
