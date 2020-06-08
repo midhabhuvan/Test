@@ -1,0 +1,16 @@
+---
+    - hosts: host1
+      sudo: yes
+      name: Play1
+      tasks:
+        - name: Execute command 'Date'
+          command: date
+        - name: Execute Test Script on server
+          command: test_script.sh
+    - hosts: slave1
+      sudo: yes
+      name: Play2
+      tasks:
+        - name: Install Apache on server
+          apt: name-apache2 state-latest
+    
