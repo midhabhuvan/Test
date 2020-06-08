@@ -13,7 +13,7 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Starting to build docker image'
-                sudo docker build . -t TestBuild1
+                docker.build
             }
             
             
