@@ -1,6 +1,3 @@
-def getDockerTag(){
-    
-}
 pipeline {
    agent {label 'staging'}
 
