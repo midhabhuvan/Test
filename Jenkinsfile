@@ -22,16 +22,24 @@ pipeline {
                  }    
             }
         }
-        stage('Publish Docker Image To Docker Hub') {
+
+      stage('Publish Docker Image To Docker Hub') {
          steps {
             script{
                // Build Docker Image
                 echo 'Publishing Image To DockerHUb'
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    docker.withRegistry('', 'docker-hub-credentials') {
+                            sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                            dockerImage.push("${env.BUILD_NUMBER}")
+                            dockerImage.push("latest")
                     }
-                }
+
+                }   
             }    
          }
       }
+      
+   }
 }
+
