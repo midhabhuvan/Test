@@ -11,6 +11,6 @@
       sudo: yes
       name: Play2
       tasks:
-        - name: Install Apache on server
+        - name: Install Apache2 on server
           apt: name-apache2 state-latest
     
