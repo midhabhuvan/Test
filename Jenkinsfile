@@ -1,5 +1,10 @@
 pipeline {
    agent {label 'staging'}
+    environment {
+      registry = "midhabhuvan/devops"
+      registryCredential = 'docker-hub-credentials'
+      dockerImage = ''
+  }
 
    stages {
       stage('Download') {
@@ -13,7 +18,7 @@ pipeline {
             script{
                // Build Docker Image
                 echo 'Starting to build docker image'
-                docker.build
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
             
             
