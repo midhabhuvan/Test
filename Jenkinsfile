@@ -10,8 +10,13 @@ pipeline {
       }
       stage('Build Docker Image') {
          steps {
-            // Get some code from a GitHub repository
-            echo 'Starting to build docker image'
+            script{
+               // Build Docker Image
+                echo 'Starting to build docker image'
+                sudo docker build . -t TestBuild1
+            }
+            
+            
          }
       }
       
