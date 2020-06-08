@@ -1,3 +1,9 @@
+   def version 
+   def versions 
+   def major
+   def minor
+   def patch
+
 pipeline {
    agent {label 'staging'}
     environment {
@@ -5,11 +11,6 @@ pipeline {
       registryCredential = 'docker-hub-credentials'
       dockerImage = ''
     }
-   def version 
-   def versions 
-   def major
-   def minor
-   def patch
    stages {
       stage('Download Git Code') {
          steps {
