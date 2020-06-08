@@ -14,7 +14,7 @@ pipeline {
       stage('Build Docker Image') {
          steps {
             // Get some code from a GitHub repository
-            docker build . -t website
+            echo 'Starting to build docker image'
          }
       }
       
